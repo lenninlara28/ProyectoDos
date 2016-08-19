@@ -6,6 +6,8 @@
 
 package interfaz;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author llara11
@@ -59,7 +61,7 @@ public class principal extends javax.swing.JFrame {
                 txtNumeroUnoActionPerformed(evt);
             }
         });
-        jPanel1.add(txtNumeroUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 100, 20));
+        jPanel1.add(txtNumeroUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 100, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Numero Dos : ");
@@ -118,6 +120,15 @@ public class principal extends javax.swing.JFrame {
      String resultado;
      double  n1,n2,res=0;
      int op;
+       
+     if (txtNumeroUno.getText().trim().isEmpty()){
+         JOptionPane.showMessageDialog(this,"Digite el numero uno","error", JOptionPane.ERROR_MESSAGE);
+         txtNumeroUno.requestFocusInWindow();
+     }else if(txtNumerodos.getText().trim().isEmpty()){
+         JOptionPane.showMessageDialog(this,"Digite el numero dos","error", JOptionPane.ERROR_MESSAGE);
+         txtNumerodos.requestFocusInWindow();
+     }
+     else {
      n1 =Double.parseDouble(txtNumeroUno.getText());
      n2 =Double.parseDouble(txtNumerodos.getText());
      op= cmbOperacion.getSelectedIndex();
@@ -137,7 +148,7 @@ public class principal extends javax.swing.JFrame {
      }
      resultado=String.valueOf(res);
      txtResultado.setText(resultado);
-     
+     }
     }//GEN-LAST:event_cmdCalcularActionPerformed
 
     private void cmdCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCancelarActionPerformed
