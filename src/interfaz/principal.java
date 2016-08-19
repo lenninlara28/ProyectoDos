@@ -54,19 +54,30 @@ public class principal extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("Numero Uno:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
         txtNumeroUno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNumeroUnoActionPerformed(evt);
             }
         });
-        jPanel1.add(txtNumeroUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 100, 30));
+        txtNumeroUno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroUnoKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtNumeroUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, 100, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("Numero Dos : ");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, -1, -1));
-        jPanel1.add(txtNumerodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 90, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, -1, -1));
+
+        txtNumerodos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumerodosKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtNumerodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 90, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("Resultado :");
@@ -75,6 +86,8 @@ public class principal extends javax.swing.JFrame {
         txtResultado.setEditable(false);
         jPanel1.add(txtResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 70, -1));
 
+        cmdCalcular.setBackground(new java.awt.Color(51, 255, 51));
+        cmdCalcular.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         cmdCalcular.setText("CALCULAR");
         cmdCalcular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,7 +96,9 @@ public class principal extends javax.swing.JFrame {
         });
         jPanel1.add(cmdCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, -1, -1));
 
-        cmdCancelar.setText("Cancelar");
+        cmdCancelar.setBackground(new java.awt.Color(255, 0, 0));
+        cmdCancelar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        cmdCancelar.setText("Borrar");
         cmdCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmdCancelarActionPerformed(evt);
@@ -129,9 +144,16 @@ public class principal extends javax.swing.JFrame {
          txtNumerodos.requestFocusInWindow();
      }
      else {
+    
      n1 =Double.parseDouble(txtNumeroUno.getText());
      n2 =Double.parseDouble(txtNumerodos.getText());
      op= cmbOperacion.getSelectedIndex();
+      if (op==3 && n2 == 0){
+          JOptionPane.showMessageDialog(this,"NO Digite cero en el segundo numero","error", JOptionPane.ERROR_MESSAGE);
+          txtNumerodos.requestFocusInWindow();
+      txtNumerodos.selectAll();
+      }else{
+   
      switch (op){
          case 0:
              res= n1 + n2;
@@ -149,6 +171,7 @@ public class principal extends javax.swing.JFrame {
      resultado=String.valueOf(res);
      txtResultado.setText(resultado);
      }
+     }
     }//GEN-LAST:event_cmdCalcularActionPerformed
 
     private void cmdCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCancelarActionPerformed
@@ -159,6 +182,24 @@ public class principal extends javax.swing.JFrame {
      txtNumeroUno.requestFocusInWindow();
      cmbOperacion.setSelectedIndex(0);
     }//GEN-LAST:event_cmdCancelarActionPerformed
+
+    private void txtNumeroUnoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroUnoKeyTyped
+        char c=evt.getKeyChar(); 
+             
+         
+          if(!Character.isDigit(c)) { 
+              getToolkit().beep(); 
+              evt.consume();}
+    }//GEN-LAST:event_txtNumeroUnoKeyTyped
+
+    private void txtNumerodosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumerodosKeyTyped
+       char c=evt.getKeyChar(); 
+             
+         
+          if(!Character.isDigit(c)) { 
+              getToolkit().beep(); 
+              evt.consume();}
+    }//GEN-LAST:event_txtNumerodosKeyTyped
 
     /**
      * @param args the command line arguments
